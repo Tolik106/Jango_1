@@ -1,3 +1,4 @@
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 
 DATA = {
@@ -18,6 +19,72 @@ DATA = {
     },
     # можете добавить свои рецепты ;)
 }
+
+
+def omlet_views(request):
+
+    data = DATA['omlet']
+    servings = request.GET.get('servings', None)
+    if servings:
+        new_data = dict()
+        for item, value in data.items():
+            new_value = value*int(servings)
+            new_data[item] = new_value
+        context = {
+            'recipe':
+                new_data
+
+        }
+    else:
+        context = {
+            'recipe':
+                data
+        }
+
+    return render(request, 'calculator/index.html', context)
+
+def pasta_views(request):
+
+    data = DATA['pasta']
+    servings = request.GET.get('servings', None)
+    if servings:
+        new_data = dict()
+        for item, value in data.items():
+            new_value = value*int(servings)
+            new_data[item] = new_value
+        context = {
+            'recipe':
+                new_data
+
+        }
+    else:
+        context = {
+            'recipe':
+                data
+        }
+
+    return render(request, 'calculator/index.html', context)
+def buter_views(request):
+
+    data = DATA['buter']
+    servings = request.GET.get('servings', None)
+    if servings:
+        new_data = dict()
+        for item, value in data.items():
+            new_value = value*int(servings)
+            new_data[item] = new_value
+        context = {
+            'recipe':
+                new_data
+
+        }
+    else:
+        context = {
+            'recipe':
+                data
+        }
+
+    return render(request, 'calculator/index.html', context)
 
 # Напишите ваш обработчик. Используйте DATA как источник данных
 # Результат - render(request, 'calculator/index.html', context)
