@@ -1,8 +1,12 @@
 from django.contrib import admin
 
-from .models import Article
+from .models import Tag, Scope
 
 
-@admin.register(Article)
-class ArticleAdmin(admin.ModelAdmin):
-    pass
+class RelationshipInline(admin.TabularInline):
+    model = Scope
+
+
+@admin.register(Tag)
+class ObjectAdmin(admin.ModelAdmin):
+    inlines = [RelationshipInline]
